@@ -1,11 +1,11 @@
 <?php
-
+namespace App\Http\Controllers\API; //1
 namespace App\Http\Controllers;
 
-use App\Models\Youth;
 use Illuminate\Http\Request;
-
-use App\Http\Resources\Youth as YouthResource;
+use App\Models\Youth;
+use App\Http\Controllers\API\BaseController as BaseController; //2
+use App\Http\Resources\Youth as YouthResource; //3
 
 class YouthController extends Controller
 {
