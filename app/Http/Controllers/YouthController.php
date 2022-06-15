@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Youth;
 use Illuminate\Http\Request;
 
+use App\Http\Resources\Youth as YouthResource;
+
 class YouthController extends Controller
 {
     /**
@@ -14,9 +16,9 @@ class YouthController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $youthlist = Youth::all();
 
-        return $this->sendResponse(ProductResource::collection($products), 'Products Retrieved Successfully.');
+        return $this->sendResponse(YouthResource::collection($youthlist), 'List');
 
         // return view ('components.youth.index');    
     }
@@ -68,8 +70,11 @@ class YouthController extends Controller
             'encoded_by'=> 'required',
         ]);
 
-
-        return Youth::create($request->all());
+       // return Youth::create($request->all());
+       $input = $request->all();
+       $newprofile = Product::create($input);
+   
+       return $this->sendResponse(new YouthResource($newprofile), 'Profile has beed Created.');
     }
 
     /**
@@ -80,7 +85,13 @@ class YouthController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = Youth::find($id);
+  
+        if (is_null($profile)) {
+            return $this->sendError('Profile not found.');
+        }
+   
+        return $this->sendResponse(new YouthResource($profile), 'Profile Retrieved Successfully.');
     }
 
     /**
@@ -92,7 +103,43 @@ class YouthController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $saveprofile = Youth::find($id);   
+        $saveprofile->fname = $input['fname'];
+        $saveprofile->fname = $input['lname'];
+        $saveprofile->fname = $input['mname'];
+        $saveprofile->fname = $input['datebirth'];
+        $saveprofile->fname = $input['birth_place'];
+        $saveprofile->fname = $input['contact_no'];
+        $saveprofile->fname = $input['address'];
+        $saveprofile->fname = $input['zone'];
+        $saveprofile->fname = $input['gender'];
+        $saveprofile->fname = $input['kk_member'];
+        $saveprofile->fname = $input['civil_status'];
+        $saveprofile->fname = $input['tribe'];
+        $saveprofile->fname = $input['religion'];
+        $saveprofile->fname = $input['email'];
+        $saveprofile->fname = $input['educational_attainment'];
+        $saveprofile->fname = $input['occupation'];
+        $saveprofile->fname = $input['youth_sector'];
+        $saveprofile->fname = $input['organization'];
+        $saveprofile->fname = $input['fathers_name'];
+        $saveprofile->fname = $input['fathers_occupation'];
+        $saveprofile->fname = $input['mothers_name'];
+        $saveprofile->fname = $input['mothers_occupation'];
+        $saveprofile->fname = $input['living_w_parents'];
+        $saveprofile->fname = $input['concerns_issue'];
+        $saveprofile->fname = $input['control_no'];
+        $saveprofile->fname = $input['batch'];
+        $saveprofile->fname = $input['civil_status_specify'];
+        $saveprofile->fname = $input['spouse_name'];
+        $saveprofile->fname = $input['youth_sec_specify'];
+        $saveprofile->fname = $input['org_specify'];
+        $saveprofile->fname = $input['encoded_by'];
+        $saveprofile->save();
+   
+        return $this->sendResponse(new ProductResource($product), 'Product Updated Successfully.');
     }
 
     /**
@@ -103,6 +150,9 @@ class YouthController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $profile = Youth::find($id);
+        $profile->delete();
+   
+        return $this->sendResponse([], 'Profile Deleted Successfully.');
     }
 }

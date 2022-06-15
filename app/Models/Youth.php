@@ -10,8 +10,8 @@ class Youth extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstName',
-        'lastName',
+        'fname',
+        'lname',
         'mname',
         'datebirth',
         'birth_place',
