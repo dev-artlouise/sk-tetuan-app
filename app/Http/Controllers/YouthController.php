@@ -14,7 +14,11 @@ class YouthController extends Controller
      */
     public function index()
     {
-        return view ('components.youth.index');    
+        $products = Product::all();
+
+        return $this->sendResponse(ProductResource::collection($products), 'Products Retrieved Successfully.');
+
+        // return view ('components.youth.index');    
     }
 
     public function create(){
@@ -63,6 +67,7 @@ class YouthController extends Controller
             'org_specify' => 'required',
             'encoded_by'=> 'required',
         ]);
+
 
         return Youth::create($request->all());
     }
