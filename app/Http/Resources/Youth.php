@@ -14,7 +14,6 @@ class Youth extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
             'fname' => $this->fname,
             'lname' => $this->lname,
