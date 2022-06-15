@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Controllers\API; //1
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Youth;
+use App\Product;
 use App\Http\Controllers\API\BaseController as BaseController; //2
 use App\Http\Resources\Youth as YouthResource; //3
 

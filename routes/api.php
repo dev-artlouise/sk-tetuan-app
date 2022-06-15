@@ -25,3 +25,7 @@ Route::get('/dashboard', 'App\Http\Controllers\DashBoardController@index');
 Route::get('/youth', 'App\Http\Controllers\YouthController@index');
 Route::get('/youth/create', 'App\Http\Controllers\YouthController@create');
 Route::post('/youth', 'App\Http\Controllers\YouthController@store');
+
+// Route::middleware('auth:api')->group( function () {
+//     Route::resource('youth', 'YouthController');
+// });

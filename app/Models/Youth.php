@@ -9,6 +9,8 @@ class Youth extends Model
 {
     use HasFactory;
 
+    protected $table = 'yt_profile';
+
     protected $fillable = [
         'fname',
         'lname',
