@@ -70,7 +70,6 @@ class YouthController extends Controller
             'encoded_by'=> 'required',
         ]);
 
-       // return Youth::create($request->all());
        $input = $request->all();
        $newprofile = Product::create($input);
    
